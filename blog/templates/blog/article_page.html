@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+    <head>
+        <meta charset="UTF-8">
+        <title>个人博客</title>
+    </head>
+
+    <link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
+	<link href="{% static 'logo.ico' %}" rel="shortcut icon" />
+	<script src="/static/jquery/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.page.js"></script>
+    <script src="/static/js/snowy.js"></script>
+    <link href="/static/css/about.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/article.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/article_detail.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/jquery.page.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/moodList.css" rel="stylesheet" type="text/css">
+
+
+<body>
+	<div class="w_header">
+		<div class="container">
+			<div class="w_header_top">
+				<a href="#" class="w_logo"></a>
+				<span class="w_header_nav">
+					<ul>
+						<li><a href="http://127.0.0.1:8000/blog/">首页</a></li>
+						<li><a href="about.html" >关于</a></li>
+						<li><a href="article.html"  class="active">成长</a></li>
+						<li><a href="">学习</a></li>
+						<li><a href="">娱乐</a></li>
+						<li><a href="moodList.html">说说</a></li>
+						<li><a href="comment.html">留言</a></li>
+					</ul>
+				</span>
+				<div class="w_search">
+					<div class="w_searchbox">
+						<input type="text" placeholder="search" />
+						<button>搜索</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w_container">
+		<div class="container">
+			<div class="row w_main_row">
+				
+				<ol class="breadcrumb w_breadcrumb">
+				  <li><a href="#">首页</a></li>
+				  <li><a href="#">文章</a></li>
+				  <li class="active">我的个人博客之——{{ article.title }}</li>
+				  <span class="w_navbar_tip">革命尚未成功，同志仍需努力。</span>
+				</ol>
+				
+				<div class="col-lg-9 col-md-9 w_main_left">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h2 class="c_titile">{{ article.title }}</h2>
+							<p class="box_c"><span class="d_time">发布时间：{{ article.pub_time|date:"Y-m-d H:i" }}</span><span>编辑：{{ article.author }}</a></span><span>阅读（88646）</span></p>
+							<ul class="infos">
+								{{ article.content }}
+							</ul>
+															
+							<div class="keybq">
+						    	<p><span>关键字</span>：
+									{% for i in article.tags.all %}
+										<a class="label label-default">{{ i.name }}</a>
+									{% endfor %}
+								</p>
+						    </div>
+
+							<div class="nextinfo">
+								<p class="last">上一篇：<a href="#">免费收录网站搜索引擎登录口大全</a></p>
+								<p class="next">下一篇：<a href="#">javascript显示年月日时间代码</a></p>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 w_main_right">
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">最新发布</h3>
+					  </div>
+					  <div class="panel-body">
+					    	<ul class="list-unstyled sidebar">				
+								<li><a href="/post/04928311">排序算法之冒泡排序 － java实现</a></li>
+								<li><a href="/post/32097759">快速搭建基于二进制日志文件的 mysql 复制</a></li>							
+								<li><a href="/post/09196557">web 服务器负载均衡教程，快速搭建高可用服务器集群</a></li>							
+								<li><a href="/post/20654391">使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享</a></li>							
+								<li><a href="/post/41501569">使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡</a></li>							
+								<li><a href="/post/89658700">mysql 复制（replication）基础概念和应用场景简介</a></li>							
+								<li><a href="/post/03088922">redis 单节点在 Linux 生产环境的安装和简单配置</a></li>							
+								<li><a href="/post/05203355">使用 jQuery 的 val() 方法来获取以及设置表单元素值</a></li>							
+								<li><a href="/post/03120718">使用 jQuery 的 removeProp() 方法来删除元素的特性（property）</a></li>							
+								<li><a href="/post/37454977">使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）</a></li>							
+						</ul>
+					  </div>
+					</div>
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">友情链接</h3>
+					  </div>
+					  <div class="panel-body">
+					    <div class="newContent">
+					    	<ul class="list-unstyled sidebar shiplink">				
+								<li><a href="https://www.baidu.com/" target="_blank">百度</a></li>
+								<li><a href="https://www.oschina.net/" target="_blank">开源中国</a></li>							
+								<li><a href="http://www.ulewo.com/" target="_blank">有乐网</a></li>							
+								<li><a href="http://www.sina.com.cn/" target="_blank">新浪网</a></li>							
+								<li><a href="http://www.qq.com/" target="_blank">腾讯网</a></li>							
+							</ul>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!--toTop-->
+	<div id="shape">
+		<div class="shapeColor">
+			<div class="shapeFly">
+			</div>
+		</div>
+	</div>
+	<!--snow-->
+	<!--<div class="snow-container"></div>-->
+</body>
+</html>

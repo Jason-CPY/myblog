@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    {% load staticfiles %}
+	<head>
+		<meta charset="UTF-8">
+		<title>个人博客</title>
+	</head>
+	<link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
+	<link href="{% static 'logo1.ico' %}" rel="shortcut icon" />
+	<script src="/static/bootstrap/js/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.page.js"></script>
+    <script src="/static/js/snowy.js"></script>
+    <link href="/static/css/about.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/article.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/article_detail.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/jquery.page.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/moodList.css" rel="stylesheet" type="text/css">
+	<!--<script type="text/javascript" src="plugin/jquery.page.js"></script>-->
+	<!--<script src="js/common.js"></script>-->
+	<!--<script src="js/snowy.js"></script>-->
+
+	<body>
+		<div class="w_header">
+			<div class="container">
+				<div class="w_header_top">
+					<a href="#" class="w_logo"></a>
+					<span class="w_header_nav">
+					<ul>
+						<li><a href="" class="active">首页</a></li>
+						<li><a href="about.html">关于</a></li>
+						<li><a href="article.html">成长</a></li>
+						<li><a href="">学习</a></li>
+						<li><a href="">娱乐</a></li>
+						<li><a href="moodList.html">说说</a></li>
+						<li><a href="comment.html">留言</a></li>
+					</ul>
+				</span>
+					<div class="w_search">
+						<div class="w_searchbox">
+							<input type="text" placeholder="search" />
+							<button>搜索</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="w_container">
+			<div class="container">
+				<div class="row w_main_row">
+					<div class="col-lg-9 col-md-9 w_main_left">
+						<!--滚动图开始-->
+						<div class="panel panel-default">
+
+							<div id="w_carousel" class="carousel slide w_carousel" data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+									<li data-target="#w_carousel" data-slide-to="0" class="active"></li>
+									<li data-target="#w_carousel" data-slide-to="1"></li>
+									<li data-target="#w_carousel" data-slide-to="2"></li>
+									<li data-target="#w_carousel" data-slide-to="3"></li>
+								</ol>
+
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">
+										<img src="{% static '/slider/slide1.jpg' %}" alt="...">
+										<div class="carousel-caption">
+											<h3>Welcome To My Blog!</h3>
+										</div>
+									</div>
+									<div class="item">
+										<img src="{% static '/slider/slide2.jpg' %}" alt="...">
+										<div class="carousel-caption">...</div>
+									</div>
+									<div class="item">
+										<img src="{% static '/slider/slide3.jpg' %}" alt="...">
+										<div class="carousel-caption">...</div>
+									</div>
+									<div class="item">
+										<img src="{% static '/slider/slide4.jpg' %}" alt="...">
+										<div class="carousel-caption">...</div>
+									</div>
+								</div>
+
+								<!-- Controls -->
+								<a class="left carousel-control" href="#w_carousel" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#w_carousel" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+
+						</div>
+
+						<div class="panel panel-default contenttop">
+							<a href="article_detail.html">
+								<strong>博主置顶</strong>
+								<h3 class="title">嫁人就嫁程序员</h3>
+								<p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+							</a>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">热门文章</h3>
+							</div>
+
+							<div class="panel-body">
+
+								<!--文章列表开始-->
+								<div class="contentList">
+                                    {% for i in articles_views %}
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <h4><a class="title" href="{% url 'blog:article_page' i.id %}">{{ i.title }}</a></h4>
+                                                <p>
+													{% for j in i.tags.all %}
+                                                        <a class="label label-default">{{ j.name }}</a>
+													{% endfor %}
+                                                </p>
+                                                <p class="overView">{{ i.overview }}</p>
+                                                <p><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">{{ i.author }}</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:{{ i.views }}</span><span class="count"><i class="glyphicon glyphicon-comment"></i>评论:18</span><span class="count"><i class="glyphicon glyphicon-time"></i>{{ i.pub_time|date:"Y-m-d H:i" }}</span></p>
+
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+								</div>
+								<!--文章列表结束-->
+
+							</div>
+						</div>
+					</div>
+
+					<!--左侧开始-->
+					<div class="col-lg-3 col-md-3 w_main_right">
+
+						<div class="panel panel-default sitetip">
+							<a href="article_detail.html">
+								<strong>站点公告</strong>
+								<h3 class="title">嫁人就嫁程序员</h3>
+								<p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+							</a>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">热门标签</h3>
+							</div>
+							<div class="panel-body">
+								<div class="labelList">
+                                    {% for i in tags %}
+									    <a class="label label-default">i.name</a>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">最新发布</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-unstyled sidebar">
+									{% for i in articles_time %}
+                                        <li>
+                                            <a href="{% url 'blog:article_page' i.id %}">{{ i.title }}</a>
+                                        </li>
+                                    {% endfor %}
+								</ul>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">友情链接</h3>
+							</div>
+							<div class="panel-body">
+								<div class="newContent">
+									<ul class="list-unstyled sidebar shiplink">
+										<li>
+											<a href="https://www.baidu.com/" target="_blank">百度</a>
+										</li>
+										<li>
+											<a href="https://www.oschina.net/" target="_blank">开源中国</a>
+										</li>
+										<li>
+											<a href="http://www.ulewo.com/" target="_blank">有乐网</a>
+										</li>
+										<li>
+											<a href="http://www.sina.com.cn/" target="_blank">新浪网</a>
+										</li>
+										<li>
+											<a href="http://www.qq.com/" target="_blank">腾讯网</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">有事请加我微信</h3>
+							</div>
+							<div class="panel-body">
+								<img src="{% static 'qrcode.jpg' %}" style="height: 230.5px;width: 230.5px;" />
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var $backToTopEle = $('<a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">^</a>').appendTo($("body")).click(function() {
+			$("html, body").animate({ scrollTop: 0 }, 120);
+		});
+		var backToTopFun = function() {
+			var st = $(document).scrollTop(),
+				winh = $(window).height();
+			(st > 0) ? $backToTopEle.show(): $backToTopEle.hide();
+			/*IE6下的定位*/
+			if(!window.XMLHttpRequest) {
+				$backToTopEle.css("top", st + winh - 166);
+			}
+		};
+
+		$(function() {
+			$(window).on("scroll", backToTopFun);
+			backToTopFun();
+		});
+	</script>
+
+</html>
